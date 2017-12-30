@@ -2,8 +2,6 @@
 
 To install:
 
-To install:
-
 `npm i`
 `npm run build`
 
