@@ -2,9 +2,10 @@
 
 To install:
 
-Dependenies I used:
+To install:
 
 `npm i`
+`npm run build`
 
 To run:
 
