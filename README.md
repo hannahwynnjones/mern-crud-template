@@ -1,4 +1,4 @@
-### Basic MERN stack with CRUD
+# Basic MERN stack with CRUD
 
 To install:
 

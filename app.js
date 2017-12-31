@@ -3,12 +3,33 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var passport = require('passport');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/mern-crud', { useMongoClient: true, promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://localhost/book-list-mern-crud', { useMongoClient: true, promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
+
+//mongodb://username:password@host/database  <===  If you have to provide an username and a password use this format
+
+
+// ************************* NEW ********************
+  // tell the app to look for static files in these directories
+  // app.use(express.static('./static/'));
+  // app.use(express.static('./client/dist/'));
+  // pass the passport middleware
+//app.use(passport.initialize());
+// load passport strategies
+const localSignupStrategy = require('./passport/local-signup');
+const localLoginStrategy = require('./passport/local-login');
+passport.use('local-signup', localSignupStrategy);
+passport.use('local-login', localLoginStrategy);
+
+// pass the authorization checker middleware
+const authCheckMiddleware = require('./middleware/auth-check');
+app.use('/api', authCheckMiddleware);
+  // *********************************************
 
 var book = require('./routes/book');
 var app = express();
